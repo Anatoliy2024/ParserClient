@@ -4,16 +4,12 @@
     {
       "src": "index.html",
       "use": "@vercel/static"
-    },
-    {
-      "src": "function/getInfoFromServer.js",
-      "use": "@vercel/node"
     }
   ],
   "routes": [
     {
-      "src": "/api/(.*)",
-      "dest": "/function/getInfoFromServer.js"
+      "src": "/(.*)",
+      "dest": "/index.html"
     }
   ]
 }
