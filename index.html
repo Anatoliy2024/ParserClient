@@ -5,10 +5,21 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
 
-    <link rel="stylesheet" href="/global.css" />
+    <!-- <link rel="stylesheet" href="/global.css" /> -->
   </head>
-  <body>
-    <div class="wrapper">
+  <body style="padding: 20px; margin: 0; background: url(../public/3.png)">
+    <div
+      style="
+        padding: 20px;
+        color: rgb(229, 190, 255);
+        max-width: 1000px;
+        margin: auto;
+        border-radius: 20px;
+        background: rgba(0, 0, 0, 0.8);
+        display: flex;
+        justify-content: center;
+      "
+    >
       <div>
         <table>
           <caption>
@@ -39,7 +50,7 @@
 
           clinics.forEach((clinic) => {
             const row = document.createElement("tr")
-            row.innerHTML = `<td><a href="${clinic[0]}">${clinic[0]}</a></td><td>${clinic[1]}</td><td>${clinic[2]}</td>`
+            row.innerHTML = `<td><a href="${clinic[0]}" style="color: rgb(201, 119, 255);">${clinic[0]}</a></td><td>${clinic[1]}</td><td>${clinic[2]}</td>`
             table.appendChild(row)
           })
         })
