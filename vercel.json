@@ -1,8 +1,19 @@
 {
+  "version": 2,
+  "builds": [
+    {
+      "src": "index.html",
+      "use": "@vercel/static"
+    },
+    {
+      "src": "function/getInfoFromServer.js",
+      "use": "@vercel/node"
+    }
+  ],
   "routes": [
     {
       "src": "/function/(.*)",
-      "dest": "/function/$1"
+      "dest": "/function/getInfoFromServer.js"
     }
   ]
 }
