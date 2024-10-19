@@ -1,16 +1,19 @@
 {
+  "version": 2,
   "builds": [
     {
-      "src": "global.css",
-      "use": "@now/static"
-    },
-    {
-      "src": "getInfoFromServer.js",
-      "use": "./function/getInfoFromServer.js"
-    },
-    {
       "src": "index.html",
-      "use": "@now/static"
+      "use": "@vercel/static"
+    },
+    {
+      "src": "function/getInfoFromServer.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/api/(.*)",
+      "dest": "/function/getInfoFromServer.js"
     }
   ]
 }
