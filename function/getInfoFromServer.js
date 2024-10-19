@@ -1,4 +1,4 @@
-fetch("http://parser-server.vercel.app/api/clinic")
+fetch("https://parser-server.vercel.app/api/clinic")
   .then((response) => {
     if (!response.ok) {
       throw new Error("Network response was not ok")
