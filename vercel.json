@@ -1,15 +1,16 @@
 {
-  "version": 2,
   "builds": [
     {
-      "src": "index.html",
-      "use": "@vercel/static"
-    }
-  ],
-  "routes": [
+      "src": "global.css",
+      "use": "@now/static"
+    },
     {
-      "src": "/api/clinic",
-      "dest": "index.html"
+      "src": "getInfoFromServer.js",
+      "use": "./function/getInfoFromServer.js"
+    },
+    {
+      "src": "index.html",
+      "use": "@now/static"
     }
   ]
 }
