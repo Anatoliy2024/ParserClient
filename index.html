@@ -37,24 +37,43 @@
       </div>
     </div>
     <script>
-      fetch("https://parser-server.vercel.app/api/clinic")
-        .then((response) => {
-          if (!response.ok) {
-            throw new Error("Network response was not ok")
-          }
-          return response.json()
-        })
-        .then((clinics) => {
-          const table = document.querySelector(".table")
-          table.innerHTML = ""
+      // fetch("https://parser-server.vercel.app/api/clinic")
+      //   .then((response) => {
+      //     if (!response.ok) {
+      //       throw new Error("Network response was not ok")
+      //     }
+      //     return response.json()
+      //   })
+      //   .then((clinics) => {
+      //     const table = document.querySelector(".table")
+      //     table.innerHTML = ""
 
-          clinics.forEach((clinic) => {
-            const row = document.createElement("tr")
-            row.innerHTML = `<td><a href="${clinic[0]}" style="color: rgb(201, 119, 255);">${clinic[0]}</a></td><td>${clinic[1]}</td><td>${clinic[2]}</td>`
-            table.appendChild(row)
-          })
-        })
-        .catch((err) => console.error("Error:", err))
+      //     clinics.forEach((clinic) => {
+      //       const row = document.createElement("tr")
+      //       row.innerHTML = `<td><a href="${clinic[0]}" style="color: rgb(201, 119, 255);">${clinic[0]}</a></td><td>${clinic[1]}</td><td>${clinic[2]}</td>`
+      //       table.appendChild(row)
+      //     })
+      //   })
+      //   .catch((err) => console.error("Error:", err))
+
+      const eventSource = new EventSource(
+        "https://parser-server.vercel.app/api/clinic"
+      )
+
+      eventSource.onmessage = function (event) {
+        const data = JSON.parse(event.data)
+        console.log("Полученные данные:", data)
+
+        // Обновляем вашу таблицу или другой интерфейс
+        const table = document.querySelector(".table")
+        const row = document.createElement("tr")
+        row.innerHTML = `<td><a href="${data.link}" style="color: rgb(201, 119, 255);">${data.link}</a></td><td>${data.city}</td><td>${data.address}</td>`
+        table.appendChild(row)
+      }
+
+      eventSource.onerror = function (error) {
+        console.error("Ошибка:", error)
+      }
     </script>
   </body>
 </html>
